@@ -25,7 +25,7 @@ class Notifier < ApplicationMailer
          subject: @notification.subject)
   end
 
-  def planting_reminder(member)
+  def planting_reminder(member) #SS20
     @member = member
     @sitename = ENV['GROWSTUFF_SITE_NAME']
 
