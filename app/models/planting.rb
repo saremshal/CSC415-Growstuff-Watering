@@ -128,4 +128,46 @@ class Planting < ApplicationRecord
   def owner_must_match_garden_owner
     errors.add(:owner, "must be the same as garden") unless owner == garden.owner
   end
+
+  # @params : void
+  # @task   : returns the value of the next day the plant should be watered
+  # @return : the next day the plant should be watered [date]
+  def get_next_watered()
+      return @next_watered
+  end
+
+  # @params : void
+  # @task   : returns the value of the last day the plant was watered
+  # @return : the next day the last day the plant was watered [date]
+  def get_last_watered()
+      return @last_watered
+  end
+
+  # @params : void
+  # @task   : returns if the plant is recieving notifications or not
+  # @return : if the plant is recieving notifications or not [boolean]
+  def get_watering_notifications()
+      return @watering_notifications
+  end
+
+  # @params : the next day the plant should be watered [date]
+  # @task   : changes the value of the next day the plant should be watered
+  # @return : void
+  def set_next_watered(next_watered)
+      @next_watered = next_watered
+  end
+
+  # @params : the last day the plant should be watered [date]
+  # @task   : changes the value of the last day the plant was watered
+  # @return : void
+  def set_last_watered(last_watered)
+      @last_watered = last_watered
+  end
+
+  # @params : if the plant is recieving notifications or not [boolean]
+  # @task   : changes the value of if the plant is recieving notifications or not
+  # @return : void
+  def set_watering_notifications(watering_notifications)
+      @watering_notifications = watering_notifications
+  end
 end

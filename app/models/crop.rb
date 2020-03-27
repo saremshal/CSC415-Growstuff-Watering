@@ -173,4 +173,19 @@ class Crop < ApplicationRecord
 
     errors.add(:rejection_notes, "must be added if the reason for rejection is \"other\"")
   end
+
+  # @params : void
+  # @task   : returns the value of the watering frequency
+  # @return : the watering frequency of the crop [int]
+  def get_frequency()
+      return @watering_freq
+  end
+
+  # @params : watering frequency [int]
+  # @task   : changes the value of the watering frequency of the crop
+  # @return : void
+  def set_frequency(watering_freq)
+      @watering_freq = watering_freq
+  end
+
 end
