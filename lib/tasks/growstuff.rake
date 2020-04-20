@@ -44,7 +44,7 @@ namespace :growstuff do
   desc "Send planting reminder email"
   # usage: rake growstuff:send_planting_reminder
 
-  task send_planting_reminder: :environment do
+  task send_planting_reminder: :environment do #SS20
     # Heroku scheduler only lets us run things daily, so this checks
     # Send on the first of the month
     if Time.zone.today.day == 1
