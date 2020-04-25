@@ -46,6 +46,7 @@
       = render 'plantings/owner', planting: @planting
 
     .col-md-8.col-xs-12
+      %p Hello World!
       %section= render 'facts', planting: @planting
       - if @planting.description.present?
         = cute_icon
