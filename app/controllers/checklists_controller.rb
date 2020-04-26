@@ -34,6 +34,25 @@ class ChecklistsController < ApplicationController
 
   # PATCH/PUT /checklists/1
   def update
+    oldLastWatered = @checklist.lastWatered
+    @checklist.update(checklist_params)
+    if (oldLastWatered == @checklist.lastWatered)
+      if (@checklist.checklistFlag == true) && (Date.today >= @checklist.nextWatered)
+        @checklist.lastWatered = Date.today
+        @checklist.nextWatered = @checklist.lastWatered + 3.days     
+       elsif (@checklist.checklistFlag == false) && (Date.today < @checklist.nextWatered)
+        @checklist.nextWatered = Date.today
+        @checklist.lastWatered = @checklist.nextWatered - 3.days
+      end
+    else
+      @checklist.nextWatered = @checklist.lastWatered + 3.days 
+      if (Date.today >= @checklist.nextWatered)
+        @checklist.checklistFlag = false
+      else 
+        @checklist.checklistFlag = true
+      end
+    end
+
     if @checklist.update(checklist_params)
       redirect_to checklists_url, notice: 'Checklist was successfully updated.'
     else
