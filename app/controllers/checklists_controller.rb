@@ -24,7 +24,7 @@ class ChecklistsController < ApplicationController
     @checklist = Checklist.new(checklist_params)
 
     if @checklist.save
-      redirect_to @checklist, notice: 'Checklist was successfully created.'
+      redirect_to checklists_url, notice: 'Checklist was successfully created.'
     else
       render :new
     end
@@ -33,7 +33,7 @@ class ChecklistsController < ApplicationController
   # PATCH/PUT /checklists/1
   def update
     if @checklist.update(checklist_params)
-      redirect_to @checklist, notice: 'Checklist was successfully updated.'
+      redirect_to checklists_url, notice: 'Checklist was successfully updated.'
     else
       render :edit
     end
