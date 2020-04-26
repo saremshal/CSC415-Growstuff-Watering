@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_26_051019) do
+ActiveRecord::Schema.define(version: 2020_04_26_154218) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,17 @@ ActiveRecord::Schema.define(version: 2019_12_26_051019) do
     t.datetime "updated_at"
     t.string "name"
     t.index ["member_id"], name: "index_authentications_on_member_id"
+  end
+
+  create_table "checklists", force: :cascade do |t|
+    t.integer "memberID"
+    t.integer "plantID"
+    t.string "plantName"
+    t.boolean "checklistFlag"
+    t.date "nextWatered"
+    t.date "lastWatered"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "comfy_cms_categories", id: :serial, force: :cascade do |t|

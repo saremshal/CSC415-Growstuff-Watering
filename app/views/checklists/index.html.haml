@@ -1,0 +1,31 @@
+%h1 Listing checklists
+
+%table
+  %thead
+    %tr
+      %th Memberid
+      %th Plantid
+      %th Plantname
+      %th Checklistflag
+      %th Nextwatered
+      %th Lastwatered
+      %th
+      %th
+      %th
+
+  %tbody
+    - @checklists.each do |checklist|
+      %tr
+        %td= checklist.memberID
+        %td= checklist.plantID
+        %td= checklist.plantName
+        %td= checklist.checklistFlag
+        %td= checklist.nextWatered
+        %td= checklist.lastWatered
+        %td= link_to 'Show', checklist
+        %td= link_to 'Edit', edit_checklist_path(checklist)
+        %td= link_to 'Destroy', checklist, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Checklist', new_checklist_path

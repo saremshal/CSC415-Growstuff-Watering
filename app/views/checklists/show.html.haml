@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Memberid:
+  = @checklist.memberID
+%p
+  %b Plantid:
+  = @checklist.plantID
+%p
+  %b Plantname:
+  = @checklist.plantName
+%p
+  %b Checklistflag:
+  = @checklist.checklistFlag
+%p
+  %b Nextwatered:
+  = @checklist.nextWatered
+%p
+  %b Lastwatered:
+  = @checklist.lastWatered
+
+= link_to 'Edit', edit_checklist_path(@checklist)
+\|
+= link_to 'Back', checklists_path
