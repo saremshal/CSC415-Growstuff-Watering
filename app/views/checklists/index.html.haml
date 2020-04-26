@@ -11,7 +11,7 @@
       %th Plant Name
       %th Next Day to Water
       %th Edit Last Watered
-      %th Delete
+      %th Remove
       %th Save
 
   %tbody
@@ -23,7 +23,7 @@
             %td= checklist.plantName
             %td= checklist.nextWatered
             %td= link_to 'Edit', edit_checklist_path(checklist)
-            %td= link_to 'Destroy', checklist, method: :delete, data: { confirm: 'Are you sure?' }
+            %td= link_to 'Remove', checklist, method: :delete, data: { confirm: 'Are you sure?' }
             %td= f.submit 'Save'
 %br
 
@@ -35,7 +35,7 @@
       %th Plant Name
       %th Next Day to Water
       %th Edit Last Watered
-      %th Delete
+      %th Remove
       %th Save
 
   %tbody
@@ -47,7 +47,7 @@
             %td= checklist.plantName
             %td= checklist.nextWatered
             %td= link_to 'Edit', edit_checklist_path(checklist)
-            %td= link_to 'Destroy', checklist, method: :delete, data: { confirm: 'Are you sure?' }
+            %td= link_to 'Remove', checklist, method: :delete, data: { confirm: 'Are you sure?' }
             %td= f.submit 'Save'
 
 %br
