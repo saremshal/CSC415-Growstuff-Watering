@@ -22,6 +22,8 @@ class ChecklistsController < ApplicationController
   # POST /checklists
   def create
     @checklist = Checklist.new(checklist_params)
+    @checklist.lastWatered = Date.today
+    @checklist.nextWatered = Date.today + 3.days
 
     if @checklist.save
       redirect_to checklists_url, notice: 'Checklist was successfully created.'
