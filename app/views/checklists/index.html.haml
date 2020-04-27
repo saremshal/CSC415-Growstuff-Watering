@@ -16,7 +16,7 @@
 
   %tbody
     - @checklists.each do |checklist|
-      - if Date.today >= checklist.nextWatered
+      - if (Date.today >= checklist.nextWatered) && (checklist.memberID == current_member.id)
         = form_for checklist do |f|
           %tr
             %td= f.check_box :checklistFlag
@@ -40,7 +40,7 @@
 
   %tbody
     - @checklists.each do |checklist|
-      - if Date.today < checklist.nextWatered
+      - if (Date.today < checklist.nextWatered) && (checklist.memberID == current_member.id)
         = form_for checklist do |f|
           %tr
             %td= f.check_box :checklistFlag
@@ -52,4 +52,4 @@
 
 %br
 
-= link_to 'New Checklist', new_checklist_path
+/= link_to 'New Checklist', new_checklist_path
