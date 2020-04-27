@@ -1,5 +1,13 @@
+/ Modified By Sarem Shalforoosh
+
+/ [brief] Makes the Editing UI
+/ [param in] User goes to Editing page
+/ [param out] Displays Editing UI
+
 %h1 Editing checklist
 
+/ Shows checklists/_form.html.haml
 = render 'form'
 
+/ Shows back button
 = link_to 'Back', checklists_path

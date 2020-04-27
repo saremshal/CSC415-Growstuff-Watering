@@ -75,6 +75,7 @@
             = t('.harvest')
           = link_to member_seeds_path(current_member), class: 'dropdown-item' do
             = t('.seeds')
+          / Added checklists to the dropdown menu
           = link_to checklists_path, class: 'dropdown-item' do
             = t('.checklists')
           = link_to t('.posts'), member_posts_path(current_member), class: 'dropdown-item'

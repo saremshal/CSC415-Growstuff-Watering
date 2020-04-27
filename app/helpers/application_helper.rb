@@ -95,14 +95,11 @@ module ApplicationHelper
     strip_tags(description).split(' ')[0..20].join(' ')
   end
 
+  # Added by Sarem Shalforoosh
+  # [brief] Finds a plant object with the same OwnerID and PlantID
+  # [param in] ownerID and plantID
+  # [param out] Checklist object if found or nil if not found
   def findPlant(ownerIDVal, plantIDVal)
-    puts(Checklist.find_by(plantID: plantIDVal, memberID: ownerIDVal))
-    puts(Checklist.where(plantID: plantIDVal, memberID: ownerIDVal).first)
-    puts(Checklist.where(plantID: plantIDVal, memberID: ownerIDVal).first)
-    puts(Checklist.where(plantID: plantIDVal, memberID: ownerIDVal).first)
-    puts(Checklist.where(plantID: plantIDVal, memberID: ownerIDVal).first)
-    puts(Checklist.find_by(plantID: plantIDVal, memberID: ownerIDVal))
-    puts("HI MOM")
     return Checklist.find_by(plantID: plantIDVal, memberID: ownerIDVal)
   end
 end

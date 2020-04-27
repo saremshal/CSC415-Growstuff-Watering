@@ -46,8 +46,13 @@
       = render 'plantings/owner', planting: @planting
 
     .col-md-8.col-xs-12
+
+      / Added by Sarem Shalforoosh
+      / Retrieves Matching instance of checklist object
       - checklist = findPlant(@planting.owner_id,@planting.id)
+      / checks if anything was found
       - if (checklist == nil)
+        / if not found, it displays a message that it is not being tracked and shows button to let user track it
         %p You are currently not tracking the watering days of this plant
         /= form_for checklist do |f|
         /  - checklist.memberID = @planting.owner_id
@@ -59,8 +64,10 @@
         /  = f.submit 'Start Tracking'
         = button_to 'Start Tracking'
       - else
+        / if found, it displays a message that it is being tracked and shows button to let user stop tracking it
         %p You are currently tracking the watering days of this plant
         = button_to 'Stop Tracking', checklist, method: :delete, data: { confirm: 'Are you sure?' }
+
       %section= render 'facts', planting: @planting
       - if @planting.description.present?
         = cute_icon

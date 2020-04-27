@@ -1,13 +1,25 @@
+/ Edited By Sarem Shalforoosh
+
+/ [brief] Makes the checklist UI
+/ [param in] User goes to checklist page
+/ [param out] Displays checklist UI
+
 %br
 
 %h1 Your Plant Checklist
 %br
 
+/ Checks to see if a member is currently signed in
 - if current_member.nil?
+  / if not signed in then it will display this exception message
   %p You must login to use the checklist feature!
 - else
+  / if they are signed in then it will show them their checklist
+
+  / Creates the Needs to be Watered Table First
   %h2 Plants that Need Watering
   %table.table.table-striped
+    / Table Labels
     %thead
       %tr
         %th Watering Checklist
@@ -17,9 +29,13 @@
         %th Remove
         %th Save
 
+    / Table Content
     %tbody
+      / Cycles through all the objects of checklist
       - @checklists.each do |checklist|
+        / Checks to see if the plant needs to be watered and if the memberID matches the current member signed in
         - if (Date.today >= checklist.nextWatered) && (checklist.memberID == current_member.id)
+          / If they are signed in and it needs to be watered than it will add the following elements to the table
           = form_for checklist do |f|
             %tr
               %td= f.check_box :checklistFlag
@@ -30,8 +46,10 @@
               %td= f.submit 'Save'
   %br
 
+  / Creates the Coming up to be Watered Table Second
   %h2 Plants Coming Up
   %table.table.table-striped
+    / Table Labels
     %thead
       %tr
         %th Watering Checklist
@@ -41,9 +59,13 @@
         %th Remove
         %th Save
 
+    / Table Content
     %tbody
+      / Cycles through all the objects of checklist
       - @checklists.each do |checklist|
+        / Checks to see if the plant does not need to be watered and if the memberID matches the current member signed in
         - if (Date.today < checklist.nextWatered) && (checklist.memberID == current_member.id)
+          / If they are signed in and it does not need to be watered than it will add the following elements to the table
           = form_for checklist do |f|
             %tr
               %td= f.check_box :checklistFlag
@@ -55,4 +77,5 @@
 
   %br
 
+/ Commented out line for adding elements into the database for debugging and testing purposes
 /= link_to 'New Checklist', new_checklist_path

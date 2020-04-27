@@ -1,4 +1,12 @@
+/ Edited By Sarem Shalforoosh
+
+/ [brief] Makes the editing form for the checklist
+/ [param in] User selects an object on the checklist
+/ [param out] The new last watered date of the object is submitted
+
+/ Makes a form for the checklist object
 = form_for @checklist do |f|
+  / Standard Error Checking
   - if @checklist.errors.any?
     #error_explanation
       %h2= "#{pluralize(@checklist.errors.count, "error")} prohibited this checklist from being saved:"
@@ -6,8 +14,10 @@
         - @checklist.errors.full_messages.each do |message|
           %li= message
 
+  / Creates a field to modify last watered
   .field
     = f.label :lastWatered
     = f.date_select :lastWatered
+  / Creates submit button for selection
   .actions
     = f.submit 'Save'
