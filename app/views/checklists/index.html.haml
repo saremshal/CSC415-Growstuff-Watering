@@ -3,53 +3,56 @@
 %h1 Your Plant Checklist
 %br
 
-%h2 Plants that Need Watering
-%table.table.table-striped
-  %thead
-    %tr
-      %th Watering Checklist
-      %th Plant Name
-      %th Next Day to Water
-      %th Edit Last Watered
-      %th Remove
-      %th Save
+- if current_member.nil?
+  %p You must login to use the checklist feature!
+- else
+  %h2 Plants that Need Watering
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Watering Checklist
+        %th Plant Name
+        %th Next Day to Water
+        %th Edit Last Watered
+        %th Remove
+        %th Save
 
-  %tbody
-    - @checklists.each do |checklist|
-      - if (Date.today >= checklist.nextWatered) && (checklist.memberID == current_member.id)
-        = form_for checklist do |f|
-          %tr
-            %td= f.check_box :checklistFlag
-            %td= checklist.plantName
-            %td= checklist.nextWatered
-            %td= link_to 'Edit', edit_checklist_path(checklist)
-            %td= link_to 'Remove', checklist, method: :delete, data: { confirm: 'Are you sure?' }
-            %td= f.submit 'Save'
-%br
+    %tbody
+      - @checklists.each do |checklist|
+        - if (Date.today >= checklist.nextWatered) && (checklist.memberID == current_member.id)
+          = form_for checklist do |f|
+            %tr
+              %td= f.check_box :checklistFlag
+              %td= checklist.plantName
+              %td= checklist.nextWatered
+              %td= link_to 'Edit', edit_checklist_path(checklist)
+              %td= link_to 'Remove', checklist, method: :delete, data: { confirm: 'Are you sure?' }
+              %td= f.submit 'Save'
+  %br
 
-%h2 Plants Coming Up
-%table.table.table-striped
-  %thead
-    %tr
-      %th Watering Checklist
-      %th Plant Name
-      %th Next Day to Water
-      %th Edit Last Watered
-      %th Remove
-      %th Save
+  %h2 Plants Coming Up
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Watering Checklist
+        %th Plant Name
+        %th Next Day to Water
+        %th Edit Last Watered
+        %th Remove
+        %th Save
 
-  %tbody
-    - @checklists.each do |checklist|
-      - if (Date.today < checklist.nextWatered) && (checklist.memberID == current_member.id)
-        = form_for checklist do |f|
-          %tr
-            %td= f.check_box :checklistFlag
-            %td= checklist.plantName
-            %td= checklist.nextWatered
-            %td= link_to 'Edit', edit_checklist_path(checklist)
-            %td= link_to 'Remove', checklist, method: :delete, data: { confirm: 'Are you sure?' }
-            %td= f.submit 'Save'
+    %tbody
+      - @checklists.each do |checklist|
+        - if (Date.today < checklist.nextWatered) && (checklist.memberID == current_member.id)
+          = form_for checklist do |f|
+            %tr
+              %td= f.check_box :checklistFlag
+              %td= checklist.plantName
+              %td= checklist.nextWatered
+              %td= link_to 'Edit', edit_checklist_path(checklist)
+              %td= link_to 'Remove', checklist, method: :delete, data: { confirm: 'Are you sure?' }
+              %td= f.submit 'Save'
 
-%br
+  %br
 
 /= link_to 'New Checklist', new_checklist_path
