@@ -46,7 +46,21 @@
       = render 'plantings/owner', planting: @planting
 
     .col-md-8.col-xs-12
-      %p Hello World!
+      - checklist = findPlant(@planting.owner_id,@planting.id)
+      - if (checklist == nil)
+        %p You are currently not tracking the watering days of this plant
+        /= form_for checklist do |f|
+        /  - checklist.memberID = @planting.owner_id
+        /  - checklists.plantID = @planting.id
+        /  - checklist.plantName = @planting.crop.name
+        /  - checklist.checklistFlag = false
+        /  - checklist.lastWatered = Date.today
+        /  - checklist.nextWatered = Date.today + 3.days
+        /  = f.submit 'Start Tracking'
+        = button_to 'Start Tracking'
+      - else
+        %p You are currently tracking the watering days of this plant
+        = button_to 'Stop Tracking', checklist, method: :delete, data: { confirm: 'Are you sure?' }
       %section= render 'facts', planting: @planting
       - if @planting.description.present?
         = cute_icon
